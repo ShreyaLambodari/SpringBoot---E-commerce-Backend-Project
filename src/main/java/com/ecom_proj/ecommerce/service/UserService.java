@@ -6,6 +6,7 @@ import com.ecom_proj.ecommerce.dto.UserResponseDTO;
 import com.ecom_proj.ecommerce.model.User;
 import com.ecom_proj.ecommerce.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,9 @@ public class UserService {
 
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     private UserResponseDTO mapUserEntityToResponseDto(User user){
@@ -69,7 +73,7 @@ public class UserService {
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
         user.setUsername(userDto.getUsername());
-        user.setPassword(userDto.getPassword());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
         return user;
     }
