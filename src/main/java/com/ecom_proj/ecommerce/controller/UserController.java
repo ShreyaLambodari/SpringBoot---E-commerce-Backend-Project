@@ -40,7 +40,7 @@ public class UserController {
         userService.deleteUser(id);
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public UserResponseDTO addUser(@Valid @RequestBody UserDTO userDto){
         return userService.addUser(userDto);
     }
