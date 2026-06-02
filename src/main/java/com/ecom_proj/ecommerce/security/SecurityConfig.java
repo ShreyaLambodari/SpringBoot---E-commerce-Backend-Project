@@ -28,8 +28,34 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/api/auth/**", "/swagger-ui/**",
                                 "/v3/api-docs/**").permitAll()
+
                         .requestMatchers(HttpMethod.POST, "/api/user/register")
                         .permitAll()
+
+                        .requestMatchers(HttpMethod.DELETE, "/api/product/**")
+                        .hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.POST, "/api/product/**")
+                        .hasRole("ADMIN")
+
+
+                        .requestMatchers(HttpMethod.PUT, "/api/product/**")
+                        .hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.DELETE, "/api/category/**")
+                        .hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.POST, "/api/category/**")
+                        .hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.PUT, "/api/category/**")
+                        .hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET,
+                                "/api/product/**",
+                                "/api/category/**")
+                        .permitAll()
+
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

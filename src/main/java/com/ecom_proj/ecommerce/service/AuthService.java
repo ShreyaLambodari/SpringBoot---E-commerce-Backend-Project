@@ -34,7 +34,7 @@ public class AuthService {
                     .body(new LoginResponseDTO("User not found", null));
         }
         if(passwordEncoder.matches(loginRequestDto.getPassword(), user.getPassword())){
-            String token = jwtService.generateToken(user.getUsername());
+            String token = jwtService.generateToken(user.getUsername() ,user.getRole().name());
             return ResponseEntity
                     .ok(new LoginResponseDTO("Login successful", token));
         }

@@ -3,6 +3,7 @@ package com.ecom_proj.ecommerce.service;
 
 import com.ecom_proj.ecommerce.dto.UserDTO;
 import com.ecom_proj.ecommerce.dto.UserResponseDTO;
+import com.ecom_proj.ecommerce.model.Role;
 import com.ecom_proj.ecommerce.model.User;
 import com.ecom_proj.ecommerce.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +75,9 @@ public class UserService {
         user.setEmail(userDto.getEmail());
         user.setUsername(userDto.getUsername());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        if(user.getRole() == null){
+            user.setRole(Role.USER);
+        }
 
         return user;
     }
