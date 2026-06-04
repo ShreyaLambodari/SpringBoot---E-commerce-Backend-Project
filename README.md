@@ -48,7 +48,7 @@ src/main/java/com/ecom_proj/ecommerce/
 ├── controller/        # REST API controllers
 ├── service/           # Business logic layer
 ├── repository/        # Spring Data JPA repositories
-├── entity/            # JPA entities
+├── model/            # JPA entities
 ├── dto/               # Data Transfer Objects
 ├── security/          # JWT filter, config, service
 └── exception/         # Global exception handler
